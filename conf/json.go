@@ -15,6 +15,7 @@ var Server struct {
 	ConsolePort 	int
 	ProfilePath 	string
 	MongoDbUrl	string
+	MongoDb		string
 }
 
 func init() {

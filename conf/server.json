@@ -4,5 +4,6 @@
 	"TCPAddr": "127.0.0.1:3563",
 	"WSAddr": "127.0.0.1:3564",
 	"MaxConnNum": 20000,
-	"MongoDbUrl": "127.0.0.1:27017"
+	"MongoDbUrl": "127.0.0.1:27017",
+	"MongoDb": "test"
 }

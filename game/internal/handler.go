@@ -6,7 +6,6 @@ import (
 	"reflect"
 	"server/msg"
 	"fmt"
-	c "server/dao"
 )
 
 func init() {
@@ -45,8 +44,8 @@ func handlerRegiest(args []interface{}) {
 	a := args[1].(gate.Agent)
 
 	fmt.Println("m: ", m)
-	err := c.Orm().C("user").Insert(&m)
-	fmt.Println("err: ", err)
+	//err := c.Orm().C("user").Insert(&m)
+	//fmt.Println("err: ", err)
 
 	a.WriteMsg(&msg.Back{Success: "success"})
 }

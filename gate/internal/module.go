@@ -10,6 +10,10 @@ import (
 	"github.com/name5566/leaf/timer"
 )
 
+var (
+	db_user = "user"
+)
+
 type Module struct {
 	*gate.Gate
 }
@@ -30,6 +34,7 @@ func (m *Module) OnInit() {
 
 	//game.ChanRPC.Go("NewAgent", "Test", "test")
 	broadcast()
+
 }
 
 // 测试代码：每隔10秒群发广播
@@ -58,7 +63,7 @@ func broadcast() {
 		//(<-d.ChanTimer).Cb()
 
 		for {
-			(<-d.ChanTimer).Cb()
+			(<-d.ChanTimer).Cb()	// 不会自动执行重复执行逻辑，需多次调用
 
 			timer := time.NewTimer(time.Second * 5)
 
