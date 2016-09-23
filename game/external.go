@@ -7,5 +7,4 @@ import (
 var (
 	Module  = new(internal.Module)
 	ChanRPC = internal.ChanRPC
-	Agent = internal.Agent
 )

@@ -5,5 +5,5 @@
 	"WSAddr": "127.0.0.1:3564",
 	"MaxConnNum": 20000,
 	"MongoDbUrl": "127.0.0.1:27017",
-	"MongoDb": "test"
+	"MongoDb": "lh_test"
 }

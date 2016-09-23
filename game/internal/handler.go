@@ -12,7 +12,7 @@ func init() {
 	// 向当前模块（game 模块）注册 Hello 消息的消息处理函数 handleHello
 	handler(&msg.Hello{}, handleHello)
 
-	handler(&msg.Register{}, handlerRegiest)
+	//handler(&msg.Register{}, handlerRegiest)
 
 }
 
@@ -21,13 +21,10 @@ func handler(m interface{}, h interface{}) {
 }
 
 func handleHello(args []interface{}) {
-	fmt.Println("args: ", args)
 	// 收到的 Hello 消息
 	m := args[0].(*msg.Hello)
-	fmt.Println("m: ", m)
 	// 消息的发送者
 	a := args[1].(gate.Agent)
-	fmt.Println("a: ", a, "userData: ", a.UserData())
 
 	// 输出收到的消息的内容
 	log.Debug("hello %v", m.Name)
@@ -47,5 +44,5 @@ func handlerRegiest(args []interface{}) {
 	//err := c.Orm().C("user").Insert(&m)
 	//fmt.Println("err: ", err)
 
-	a.WriteMsg(&msg.Back{Success: "success"})
+	a.WriteMsg(&msg.Back{Message: "success"})
 }

@@ -3,6 +3,7 @@ package gate
 import (
 	"server/msg"
 	"server/game"
+	"server/login"
 )
 
 func init() {
@@ -10,6 +11,8 @@ func init() {
 	// 模块间使用 ChanRPC 通讯，消息路由也不例外
 	msg.Processor.SetRouter(&msg.Hello{}, game.ChanRPC)
 
-	msg.Processor.SetRouter(&msg.Register{}, game.ChanRPC)
+	msg.Processor.SetRouter(&msg.Register{}, login.ChanRPC)
+
+	msg.Processor.SetRouter(&msg.Login{}, login.ChanRPC)
 
 }

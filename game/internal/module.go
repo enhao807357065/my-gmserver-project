@@ -8,7 +8,6 @@ import (
 var (
 	skeleton = base.NewSkeleton()
 	ChanRPC  = skeleton.ChanRPCServer
-	Agent = agents
 )
 
 type Module struct {

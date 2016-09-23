@@ -6,12 +6,8 @@ import (
 	"server/game"
 	"server/msg"
 	"time"
-	"fmt"
 	"github.com/name5566/leaf/timer"
-)
-
-var (
-	db_user = "user"
+	"fmt"
 )
 
 type Module struct {
@@ -33,14 +29,14 @@ func (m *Module) OnInit() {
 	}
 
 	//game.ChanRPC.Go("NewAgent", "Test", "test")
-	broadcast()
+	//broadcast()
 
 }
 
 // 测试代码：每隔10秒群发广播
 func broadcast() {
 
-	time.AfterFunc(time.Second * 5, func() {
+	time.AfterFunc(time.Second * 10, func() {
 		d := timer.NewDispatcher(10)	// chan长度10
 
 		// cron expr
@@ -53,9 +49,16 @@ func broadcast() {
 		//var c *timer.Cron
 		d.CronFunc(cronExpr, func() {
 
-			fmt.Println("len(game.Agent): ", len(game.Agent))
-			for a := range game.Agent {
-				a.WriteMsg(&msg.Back{Success: "success"})
+			fmt.Println("len(game.OnlineUsers): ", len(msg.OnlineUsers))
+			for a := range msg.OnlineUsers {
+				fmt.Println("a: ", a.UserData())
+				//user := a.UserData().(*msg.Register)
+				//if user.Account == "test" {
+				//	//a.Close()	// 关闭连接?
+				//	//a.Destroy()	// 关闭连接?
+				//	//delete(msg.OnlineUsers, a)
+				//}
+				//a.WriteMsg(&msg.Back{Message: "success"})
 			}
 		})
 
@@ -65,7 +68,7 @@ func broadcast() {
 		for {
 			(<-d.ChanTimer).Cb()	// 不会自动执行重复执行逻辑，需多次调用
 
-			timer := time.NewTimer(time.Second * 5)
+			timer := time.NewTimer(time.Second * 10)
 
 			<-timer.C
 

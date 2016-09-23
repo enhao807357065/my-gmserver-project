@@ -4,7 +4,8 @@ import (
 	"github.com/name5566/leaf/gate"
 )
 
-var agents = make(map[gate.Agent]struct{})
+// 总计在线的用户数量
+//var agents = make(map[gate.Agent]struct{})
 
 // 创建和删除连接会调用
 func init() {
@@ -15,17 +16,21 @@ func init() {
 }
 
 func rpcNewAgent(args []interface{}) {
-	//a := args[0].(gate.Agent)
-	//_ = a
-
 	a := args[0].(gate.Agent)
-	agents[a] = struct{}{}
+	_ = a
+
+	//fmt.Println("rpcNewAgent-------------------------------------------------------------")
+	//a := args[0].(gate.Agent)
+
+	//fmt.Println("len: ", len(args), a)
+	//agents[a] = struct{}{}
 }
 
+// 下线调用？
 func rpcCloseAgent(args []interface{}) {
-	//a := args[0].(gate.Agent)
-	//_ = a
-
 	a := args[0].(gate.Agent)
-	delete(agents, a)
+	_ = a
+
+	//a := args[0].(gate.Agent)
+	//delete(agents, a)
 }
